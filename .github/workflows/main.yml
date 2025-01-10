@@ -21,9 +21,9 @@ jobs:
           cache: 'npm' 
       - name: Npm install 
         run: npm ci
-      - name: Run Build
-        run: npm run build
-      - name: Start Server
-        run: npm run start
-      - name: Run Tests
-        run: npm run test
+      - name: Cypress run component tests
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm run start
+          component: true 
