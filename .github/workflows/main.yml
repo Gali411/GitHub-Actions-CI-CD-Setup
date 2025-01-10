@@ -7,7 +7,7 @@ on:
 
 jobs: 
   tests: 
-    runs-on: ubentu-latest
+    runs-on: ubuntu-latest
     strategy: 
       matrix: 
         node-version: [18.x, 20.x, 22.x]
@@ -21,7 +21,9 @@ jobs:
           cache: 'npm' 
       - name: Npm install 
         run: npm ci
-      - name: Run Build
-        run: npm run build
-      - name: Run Tests
-        run: npm run test
+      - name: Cypress run component tests
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm run start
+          component: true 
